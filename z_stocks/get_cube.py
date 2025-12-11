@@ -5,8 +5,10 @@ import json
 import datetime
 import time
 import random
-from z_stocks.headers import headers
-from z_stocks.send_msg import push
+from z_stocks._headers import headers
+from z_stocks.fn_push import push
+
+cube_json = Path(__file__).parent / r"data" / r"cube_symbol.json"
 
 
 def get_cube_data(cube):
@@ -35,7 +37,7 @@ def get_cube_data(cube):
             log.info("处理调仓单 {}", x["id"])
             update_time = datetime.datetime.fromtimestamp(x["updated_at"] / 1000)
             update_time = update_time.strftime("%Y-%m-%d %H:%M:%S")
-            msg += str(update_time) + "\n"
+            msg += f"[{str(update_time)}]" + "\n\n"
             cube["laster_id"] = x["id"]
             for s in x["rebalancing_histories"]:
                 is_changed = True
@@ -45,16 +47,17 @@ def get_cube_data(cube):
                 price = s.get("price") or 0.0
                 prev_weight = s.get("prev_weight_adjusted") or 0.0
 
-                name_part = f"{stock_name}({stock_symbol})"
-                visual_width = sum(2 if "\u4e00" <= char <= "\u9fff" else 1 for char in name_part)
-                padding = 28 - visual_width
-                msg += f"    {name_part}{' ' * padding}{prev_weight:>5.2f}% >>> {weight:>5.2f}%，价格:{price:>8.2f} \n"
-                log.success(f"    {name_part}{' ' * padding}{prev_weight:>5.2f}% >>> {weight:>5.2f}%，价格:{price:>8.2f}")
+                msg += f"    {stock_name}({stock_symbol})\n"
+                msg += f"{' ' * 50} 价格:{price:>8.2f} \n"
+                msg += f"{' ' * 50}{prev_weight:>5.2f}%  >>> {weight:>5.2f}%\n"
+
+                log.success(f"    {prev_weight:>5.2f}%  >>> {weight:>5.2f}%，价格:{price:>8.2f}")
+            msg += "\n\n"
 
     if is_changed:
         is_changed = False
-        msg += "=" * 50 + "\n"
-        msg += "=" * 50 + "\n"
+        msg += " " * 50 + "\n"
+        msg += " " * 50 + "\n"
         msg += "当前持仓 \n"
 
         response = requests.get(rebalancing_current, headers=headers)
@@ -80,7 +83,7 @@ def main():
     while True:
         try:
             log.info("开始新的一轮检测")
-            cube_json = Path(__file__).parent / r"cube_symbol.json"
+
             with cube_json.open("r", encoding="utf-8") as f:
                 cube_dict = json.load(f)
 

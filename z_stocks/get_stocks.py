@@ -3,12 +3,12 @@ import json
 from pathlib import Path
 import time
 import random
-from z_stocks.headers import headers
+from z_stocks._headers import headers
 import log
-from z_stocks.send_msg import push
+from z_stocks.fn_push import push
 
 
-stocks_json = Path(__file__).parent / "stocks.json"
+stocks_json = Path(__file__).parent / r"data" / r"stocks.json"
 
 FILTER_MARKETPLACE = ["CN", "HK"]
 PASS_SYMBOLS = [

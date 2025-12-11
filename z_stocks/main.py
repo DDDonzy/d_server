@@ -1,4 +1,4 @@
-import z_stocks.cube as cube
+import z_stocks.get_cube as get_cube
 import z_stocks.get_stocks as get_stocks
 
 import log
@@ -16,7 +16,7 @@ def main():
     threads = []
 
     # 2. 创建并配置 cube.main 线程
-    cube_thread = threading.Thread(target=cube.main, name="CubeMonitor")
+    cube_thread = threading.Thread(target=get_cube.main, name="CubeMonitor")
     cube_thread.daemon = True  # 设置为守护线程
     threads.append(cube_thread)
 
