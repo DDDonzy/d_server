@@ -106,7 +106,7 @@ def main():
                 push("组合监控脚本出错", e, sender="CUBE")
             log.exception(e)
 
-        sleep_duration = random.uniform(1, 20)
+        sleep_duration = random.uniform(2, 10)
         log.info("休眠 %.2f 秒, 等待下一轮Tick" % sleep_duration)
         time.sleep(sleep_duration)
 

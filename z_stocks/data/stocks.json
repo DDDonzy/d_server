@@ -1,11 +1,45 @@
 {
     "福禄娃爷爷": {
         "uuid": 4046363970,
-        "stocks": []
+        "stocks": [
+            {
+                "symbol": "SZ002788",
+                "name": "鹭燕医药",
+                "type": 11,
+                "remark": "",
+                "exchange": "SZ",
+                "created": 1766365894640,
+                "watched": 1766365894640,
+                "category": 1,
+                "marketplace": "CN"
+            }
+        ]
     },
     "药神": {
         "uuid": 2292705444,
         "stocks": [
+            {
+                "symbol": "MU",
+                "name": "美光科技",
+                "type": 0,
+                "remark": "",
+                "exchange": "NASDAQ",
+                "created": 1767982928215,
+                "watched": 1767982928215,
+                "category": 1,
+                "marketplace": "US"
+            },
+            {
+                "symbol": "SNDK",
+                "name": "SanDisk",
+                "type": 0,
+                "remark": "",
+                "exchange": "NASDAQ",
+                "created": 1767710216171,
+                "watched": 1767710216171,
+                "category": 1,
+                "marketplace": "US"
+            },
             {
                 "symbol": "AVA",
                 "name": "阿维斯塔",
@@ -261,7 +295,7 @@
             },
             {
                 "symbol": "AAOI",
-                "name": "Applied",
+                "name": "应用光电",
                 "type": 0,
                 "remark": "",
                 "exchange": "NASDAQ",
@@ -1097,7 +1131,7 @@
             },
             {
                 "symbol": "GOLD",
-                "name": "巴里克黄金",
+                "name": "Gold.com",
                 "type": 0,
                 "remark": "",
                 "exchange": "NYSE",
